@@ -1,0 +1,58 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            Int      @id @default(autoincrement())
+  username      String   @unique
+  email         String   @unique
+  password      String
+  googleId      String?  @map("google_id")
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+  games         Game[]
+  statistics    Statistics?
+
+  @@map("users")
+}
+
+model Game {
+  id          Int      @id @default(autoincrement())
+  userId      Int?     @map("user_id")
+  word        String
+  guesses     Int
+  won         Boolean
+  datePlayed  DateTime @default(now()) @map("date_played")
+  user        User?    @relation(fields: [userId], references: [id])
+
+  @@map("games")
+}
+
+model Word {
+  id          Int     @id @default(autoincrement())
+  word        String  @unique
+  isSolution  Boolean @map("is_solution")
+
+  @@map("words")
+}
+
+model Statistics {
+  id                Int     @id @default(autoincrement())
+  userId            Int     @unique @map("user_id")
+  gamesPlayed       Int     @map("games_played")
+  gamesWon          Int     @map("games_won")
+  currentStreak     Int     @map("current_streak")
+  maxStreak         Int     @map("max_streak")
+  guessDistribution Json    @map("guess_distribution")
+  user              User    @relation(fields: [userId], references: [id])
+
+  @@map("statistics")
+}
