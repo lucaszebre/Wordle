@@ -1,17 +1,12 @@
 import React from 'react';
-import Auth from '@/components/Auth';
 import { auth } from '@/auth';
 import { redirect } from 'next/navigation';
+import Auth from '@/components/auth/auth';
 
 
- async function Home() {
+  function Home() {
    
-    const session = await auth()
-
-
-    if(session){
-        redirect('/dashboard')
-    }
+   
     
 
     return (

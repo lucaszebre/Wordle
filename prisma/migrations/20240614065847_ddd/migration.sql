@@ -1,3 +1,0 @@
--- AlterTable
-ALTER TABLE "CVInfo" ALTER COLUMN "createdAt" DROP NOT NULL,
-ALTER COLUMN "lastUpdated" DROP NOT NULL;
