@@ -18,16 +18,14 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { SchemaLogin } from "@/types"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Icons } from "./Icons"
 import React, { useContext, useState } from "react"
 import toast from "react-hot-toast"
-import { ChromeIcon } from "lucide-react"
-import { createClient } from "@/utils/supabase/client"
 import { useRouter } from "next/navigation"
+
 interface User {
   id: number;
   username: string;
@@ -71,8 +69,12 @@ export default function ChangeUserName({ user }: { user: User }) {
       } catch (error) {
         console.error('Error updating name:', error);
         setIsLoading(false)
+        if(error instanceof Error){
+            toast.error(error.message);
 
-        toast.error(error.message);
+        }else{
+            toast.error('Server error')
+        }
       }
      
 
