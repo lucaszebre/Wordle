@@ -51,7 +51,6 @@ model Statistics {
   gamesWon          Int     @map("games_won")
   currentStreak     Int     @map("current_streak")
   maxStreak         Int     @map("max_streak")
-  guessDistribution Json    @map("guess_distribution")
   user              User    @relation(fields: [userId], references: [id])
 
   @@map("statistics")

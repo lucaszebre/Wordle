@@ -3,10 +3,29 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import VirtualKeyboard from './VirtualKeyboard';
+import { useMutation } from '@tanstack/react-query';
 
 const WORD_LENGTH = 5;
 const MAX_GUESSES = 6;
 const WORD_LIST = ['REACT', 'NEXTJS', 'TAILO', 'STYLE', 'TWEET']; 
+
+const recordGame = async (gameData: {
+  word: string;
+  guesses: number;
+  won: boolean;
+}) => {
+  const response = await fetch('/api/recordgame', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(gameData),
+  });
+  if (!response.ok) {
+    throw new Error('Failed to record game');
+  }
+  return response.json();
+};
 
 const WordleGame: React.FC = () => {
   const [targetWord, setTargetWord] = useState('');
@@ -14,13 +33,19 @@ const WordleGame: React.FC = () => {
   const [currentGuess, setCurrentGuess] = useState('');
   const [gameOver, setGameOver] = useState(false);
 
+  const recordGameMutation = useMutation({
+    mutationFn: recordGame
+  });
+
   useEffect(() => {
     setTargetWord(WORD_LIST[Math.floor(Math.random() * WORD_LIST.length)]);
   }, []);
 
+  console.log(targetWord)
+
   const handleKeyPress = (key: string) => {
     if (gameOver) return;
-    
+
     if (key === 'ENTER') {
       if (currentGuess.length !== WORD_LENGTH) {
         toast.error(`Guess must be ${WORD_LENGTH} letters long.`);
@@ -28,14 +53,28 @@ const WordleGame: React.FC = () => {
       }
       const newGuesses = [...guesses, currentGuess];
       setGuesses(newGuesses);
+
+      const won = currentGuess === targetWord;
       setCurrentGuess('');
 
-      if (currentGuess === targetWord) {
-        toast.success('Congratulations! You guessed the word!');
+      if (won || newGuesses.length === MAX_GUESSES) {
         setGameOver(true);
-      } else if (newGuesses.length === MAX_GUESSES) {
-        toast.error(`Game over! The word was ${targetWord}`);
-        setGameOver(true);
+        console.log({
+          word: targetWord,
+          guesses: newGuesses.length,
+          won,
+        },"factcheck")
+        recordGameMutation.mutate({
+          word: targetWord,
+          guesses: newGuesses.length,
+          won,
+        });
+        if (won) {
+          toast.success('Congratulations! You guessed the word!');
+        } else {
+          toast.error(`Game over! The word was ${targetWord}`);
+        }
+
       }
     } else if (key === 'BACKSPACE') {
       setCurrentGuess(prev => prev.slice(0, -1));

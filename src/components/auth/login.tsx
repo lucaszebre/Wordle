@@ -27,7 +27,7 @@ import { createClient } from "@/utils/supabase/client"
 import { useRouter } from "next/navigation"
 
 
-export function Login() {
+export function Login(props:{Close:()=>void}) {
   const [isLoading,setIsLoading] = useState(false)
 
   const form = useForm<z.infer<typeof SchemaLogin>>({
@@ -59,11 +59,15 @@ export function Login() {
         setIsLoading(false)
 
         
-        router.push('/')
+        router.refresh()
+
+        props.Close()
         
       } catch (error) {
         console.error(error)
         toast.error('could not loging the user')
+        setIsLoading(false)
+
       }
      
 
