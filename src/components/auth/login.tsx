@@ -120,7 +120,12 @@ export function Login() {
       const supabase = createClient()
       supabase.auth.signInWithOAuth({
         provider: 'google',
+        options: {
+          redirectTo: `http://localhost:3000/auth/callback`,
+        },
       })
+
+      
       
     }}  variant="outline" className="w-full">
                       

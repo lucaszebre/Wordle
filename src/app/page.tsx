@@ -1,11 +1,15 @@
-import React from 'react'
+import Navbar from '@/components/Navbar';
+import WordleGame from '@/components/WordleGame';
 
-const page = () => {
+export default function Home() {
   return (
-    <div>
-      
+    <div className='min-h-screen'>
+        <Navbar />
+        <main className="flex min-h-screen flex-col items-center justify-center p-24">
+            <WordleGame />
+        </main>
     </div>
-  )
+  
+  );
 }
 
-export default page

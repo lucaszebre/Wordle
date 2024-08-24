@@ -14,9 +14,9 @@ function Auth() {
     
    
 
-    <div className=" relative bg-white w-full h-screen flex col content-center items-center justify-center ">
+    <div className=" relative  w-full h-screen flex col content-center items-center justify-center ">
       
-      <div className="relative w-full bg-white  h-full flex-col bg-muted p-10 text-white dark:border-r  ">
+      <div className="relative w-full   h-full flex-col bg-muted p-10 text-white dark:border-r  ">
        
       <div className="relative z-20 hidden items-center text-lg font-medium md:flex">
           <Link href='/'><Image

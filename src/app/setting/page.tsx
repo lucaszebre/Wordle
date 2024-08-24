@@ -17,9 +17,9 @@ const Page = async () => {
      }
 
   return (
-    <div>
+    <>
       <ChangeUserName user={{id:user.id,username:user?.username}} />
-    </div>
+    </>
   )
 }
 

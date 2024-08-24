@@ -41,13 +41,13 @@ export default async function RootLayout({
 
          
       </div>
-    <Toaster
-  position="top-center"
-  reverseOrder={false}
-/>
+          <Toaster
+          position="top-center"
+          reverseOrder={false}
+        />
 
-    </ReactQueryProvider>
-    </ThemeProvider>
+        </ReactQueryProvider>
+        </ThemeProvider>
 
     </body>
 

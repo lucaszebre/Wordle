@@ -112,7 +112,7 @@ export default function ChangeUserName({ user }: { user: User }) {
         />
         <Button  type="submit" className="w-full">{isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-            )}Change the UserName</Button>
+            )}Change</Button>
       </form>
     </Form>
 </Card>
