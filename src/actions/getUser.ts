@@ -12,10 +12,6 @@ export async function getUser(email?:string) {
         where: { email: email }
     });
   
-  
-  
-  
-  
       return user
       
     } catch (error) {

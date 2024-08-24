@@ -22,6 +22,7 @@ export default function DialogAuth(props:{children:React.ReactNode}) {
   return (
 <>
     <Button
+      asChild
         variant={'ghost'}
         onClick={open}
         className=" bg-none "

@@ -41,7 +41,6 @@ const WordleGame: React.FC = () => {
     setTargetWord(WORD_LIST[Math.floor(Math.random() * WORD_LIST.length)]);
   }, []);
 
-  console.log(targetWord)
 
   const handleKeyPress = (key: string) => {
     if (gameOver) return;
@@ -59,11 +58,7 @@ const WordleGame: React.FC = () => {
 
       if (won || newGuesses.length === MAX_GUESSES) {
         setGameOver(true);
-        console.log({
-          word: targetWord,
-          guesses: newGuesses.length,
-          won,
-        },"factcheck")
+     
         recordGameMutation.mutate({
           word: targetWord,
           guesses: newGuesses.length,

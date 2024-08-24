@@ -61,7 +61,6 @@ export async function POST(req: Request) {
         const CurrentUser = await supabase.auth.getUser()
 
 
-        console.log(CurrentUser.data.user)
 
         if(!CurrentUser.data.user){
             return new Response("Need to be auth", { status: 400 })
@@ -83,7 +82,6 @@ export async function POST(req: Request) {
         const { word, guesses, won } =  await req.json() as any ;
 
 
-        console.log(word, guesses, won )
     
         const result = await prisma.$transaction(async (prisma) => {
             // Record the game
