@@ -33,34 +33,26 @@ const ToggleSignin = (props:{user?:any}) => {
                 {
         props.user? 
         <DialogStat >
-            <Button variant="ghost" size="icon">
                 <BarChart2 className="h-6 w-6" />
-            </Button> 
         </DialogStat>
           
           
         : 
         <DialogAuth>
-            <Button variant="ghost" className='bg-none' size="icon">
                 <BarChart2 className="h-6 w-6" />
-            </Button> 
         </DialogAuth>
         
     }           {
         props.user? 
 
         <DialogChangeUsername  user={props.user}>
-         <Button asChild variant="ghost" size="icon">
                 <Settings className="h-6 w-6" />
-        </Button> 
     </DialogChangeUsername>
          
           
         : 
         <DialogAuth>
-            <Button asChild variant="ghost" size="icon">
                     <Settings className="h-6 w-6" />
-            </Button> 
         </DialogAuth>
         
 
@@ -79,10 +71,8 @@ const ToggleSignin = (props:{user?:any}) => {
           
         : 
         <DialogAuth>
-            <Button  variant="outline" size="sm" className="ml-2">
                 <LogIn className="h-4 w-4 mr-2" />
                 Login
-            </Button>
         </DialogAuth>
         
     }

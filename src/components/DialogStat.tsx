@@ -21,7 +21,6 @@ export default function DialogStat(props:{children:React.ReactNode}) {
   return (
 <>
 <Button
-asChild
         variant={'ghost'}
         onClick={open}
         className=" bg-none "

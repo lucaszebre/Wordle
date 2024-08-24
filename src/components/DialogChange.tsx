@@ -20,7 +20,6 @@ export default function DialogChangeUsername(props:{children:React.ReactNode,use
   return (
 <>
 <Button
-asChild
         variant={'ghost'}
         onClick={open}
         className=" bg-none "
