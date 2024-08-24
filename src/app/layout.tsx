@@ -34,7 +34,7 @@ export default async function RootLayout({
     <Toaster />
           
       
-      <div className=" flex-col flex justify-center items-center overflow-hidden h-screen w-full ">
+      <div className=" flex-col flex justify-center items-center overflow-x-hidden h-screen w-full ">
         
         {children}
 
