@@ -19,14 +19,14 @@ const Navbar: React.FC<any> = async ({
     const supabase = createClient(cookie);
     const {data,error} = await supabase.auth.getUser();
 
-    // const user = await getUser(data.user?.email)
+    const user = await getUser(data.user?.email)
    
   return (
     <nav className="flex flex-row  items-center h-[4rem] justify-center  w-screen border-b">
         <div className='w-[90%] max-w-[1440px] items-center  relative flex flex-row justify-between'>
             <h1 className="text-2xl font-bold">Wordle</h1>
        
-               {/* <ToggleSignin user={user}/> */}
+               <ToggleSignin user={user}/>
                 
         </div>
        
