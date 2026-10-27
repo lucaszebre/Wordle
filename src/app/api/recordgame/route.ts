@@ -5,7 +5,7 @@ import { cookies } from 'next/headers';
 
 
 export async function GET(req: Request) {
-    const cookiesStore = cookies()
+    const cookiesStore = await cookies()
 const supabase = createClient(cookiesStore)
     try {
         
@@ -55,7 +55,7 @@ interface GameRecordType{
 
 
 export async function POST(req: Request) {
-    const cookiesStore = cookies()
+    const cookiesStore = await cookies()
     const supabase = createClient(cookiesStore)
     try {
         const CurrentUser = await supabase.auth.getUser()

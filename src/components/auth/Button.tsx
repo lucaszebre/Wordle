@@ -4,16 +4,13 @@ import { createClient } from "@/utils/supabase/server"
 import { cookies } from "next/headers";
 import { revalidatePath } from 'next/cache'
 
-const cookie =cookies()
-
-const supabase = createClient(cookie);
-
 
 
 export function SignOut(props: React.ComponentPropsWithRef<typeof Button>) {
   return (
     <form action={async () => {
       "use server"
+      const supabase = createClient(await cookies())
       await supabase.auth.signOut()
       revalidatePath('/')
 

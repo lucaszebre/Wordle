@@ -14,7 +14,7 @@ const Navbar: React.FC<any> = async ({
   }: {
     children: React.ReactNode;
   }) => {
-    const cookie =cookies()
+    const cookie =await cookies()
 
     const supabase = createClient(cookie);
     const {data,error} = await supabase.auth.getUser();
